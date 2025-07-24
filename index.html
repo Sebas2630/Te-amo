@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Te amo Luz 💙</title>
   <style>
     body {
@@ -11,52 +10,49 @@
       background: url('helado.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
-    }
+    }.mensaje {
+  position: absolute;
+  color: #00aaff;
+  font-size: 2.5em;
+  user-select: none;
+  pointer-events: none;
+  animation: caer 4s ease-in forwards;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  filter: blur(0px);
+  opacity: 1;
+}
 
-    .mensaje {
-      position: absolute;
-      color: #00aaff;
-      font-size: 2.5em;
-      user-select: none;
-      pointer-events: none;
-      animation: caer 4s ease-in forwards;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-      filter: blur(0px);
-      opacity: 1;
-    }
+@keyframes caer {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    filter: blur(2px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
 
-    @keyframes caer {
-      0% {
-        transform: translateY(0);
-        opacity: 1;
-        filter: blur(0px);
-      }
-      50% {
-        filter: blur(2px);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(100vh);
-        opacity: 0;
-        filter: blur(4px);
-      }
-    }
+audio {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 9999;
+}
 
-    audio {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      z-index: 9999;
-    }
   </style>
 </head>
 <body>
   <audio controls autoplay loop muted onplay="this.muted=false;">
     <source src="musica.m4a" type="audio/mp4">
     Tu navegador no soporta el audio.
-  </audio>
-
-  <script>
+  </audio>  <script>
     function crearMensaje(x, y) {
       const mensaje = document.createElement("div");
       mensaje.className = "mensaje";
@@ -67,21 +63,21 @@
       setTimeout(() => mensaje.remove(), 4000);
     }
 
-    // Mensajes cayendo cada 250ms
+    // Mensajes cayendo automáticamente cada 250ms
     setInterval(() => {
       const x = Math.random() * window.innerWidth;
       crearMensaje(x, 0);
     }, 250);
 
-    // Mensajes al tocar la pantalla o dar click
+    // Mensajes al hacer clic
     document.addEventListener("click", function(event) {
       crearMensaje(event.clientX, event.clientY);
     });
 
+    // Mensajes al tocar pantalla
     document.addEventListener("touchstart", function(event) {
       const touch = event.touches[0];
       crearMensaje(touch.clientX, touch.clientY);
     });
-  </script>
-</body>
+  </script></body>
 </html>
