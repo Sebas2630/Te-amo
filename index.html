@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Te Amo Luz</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: url('helado.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .mensaje {
+      position: absolute;
+      color: #00bfff;
+      font-size: 2em;
+      font-family: 'Arial', sans-serif;
+      user-select: none;
+      animation: caer 5s linear forwards;
+      text-shadow: 0 0 10px rgba(0, 191, 255, 0.7);
+    }
+    @keyframes caer {
+      0% { transform: translateY(-100px); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="musica.m4a" type="audio/mp4">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <script>
+    function crearMensaje(x, y) {
+      const mensaje = document.createElement('div');
+      mensaje.className = 'mensaje';
+      mensaje.style.left = `${x}px`;
+      mensaje.style.top = `${y}px`;
+      mensaje.innerText = 'Te amo Luz 💙';
+      document.body.appendChild(mensaje);
+
+      setTimeout(() => {
+        mensaje.remove();
+      }, 5000);
+    }
+
+    document.addEventListener('click', (e) => {
+      crearMensaje(e.clientX, e.clientY);
+    });
+
+    setInterval(() => {
+      const x = Math.random() * window.innerWidth;
+      crearMensaje(x, 0);
+    }, 600);
+  </script>
+</body>
+</html>
